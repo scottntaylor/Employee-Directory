@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Directory from "./pages/directory"
-import Table from './pages/table';
+import Table from "./Utils/table";
 
 function App() {
   return (
