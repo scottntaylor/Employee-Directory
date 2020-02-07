@@ -2,13 +2,15 @@ import React from "react";
 import Container from "../components/Container";
 import Col from "../components/Col";
 import Row from "../components/Row";
+// import Navbar from "../components/Navbar";
 
-const postEmployee = () => {
+const Directory = () => {
     const handleSubmit = e => {
         e.preventDefault();
     };
     return (
         <div>
+            {/* <Navbar/> */}
             <div className="mt-4">
                 <h2>Add Employee</h2>
             </div>
@@ -38,3 +40,4 @@ const postEmployee = () => {
         </div>
     );
 }
+export default Directory;
