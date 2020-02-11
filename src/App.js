@@ -6,7 +6,7 @@ import Table from "./Utils/table";
 function App() {
   return (
     <div className="App">
-      <Directory/>
+      {/* <Directory/> */}
       <Table/>
     </div>
   );
