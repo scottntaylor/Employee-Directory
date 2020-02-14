@@ -1,27 +1,30 @@
 import React, { Component } from "react";
 import Container from "../components/Container";
 // import api from "../Utils/api";
-import gatherEmployees from "../Utils/emloyeeObject";
+// import GatherEmployees from "../Utils/emloyeeObject";
+import api from "./api";
 
 class Table extends Component {
 
-  // state = {
-  //   result: [],
-  //   name: "",
-  //   email: "",
-  //   phone: "",
-  //   age: ""
+  state = {
+    results: []
+  }
 
-  // }
 
- 
 
   componentDidMount() {
-    gatherEmployees();
+    api.search()
+      .then(res => {
+        console.log(res);
+        this.setState({
+          results: res.data.results
+        })
+      })
+      .catch(err => console.log(err))
     // this.state.result.push(results)
   };
 
-  
+
 
   render() {
     console.log(this.state);
@@ -29,10 +32,10 @@ class Table extends Component {
 
       <Container>
         <div className="mt-4">
-                <h2>Employee List</h2> <button className="btn btn-success" type="submit">
-                        Sort
+          <h2>Employee List</h2> <button className="btn btn-success" type="submit">
+            Sort
               </button>
-            </div>
+        </div>
         <table className="table table-striped">
           <thead>
             <tr>
@@ -43,30 +46,17 @@ class Table extends Component {
             </tr>
           </thead>
           <tbody>
-          {/* <tr>
-              <th scope="row">{this.state.name}</th>
-              <td>matt.johnson@gmail.com</td>
-              <td>(123)456-7890</td>
-              <td>25</td>
-            </tr> */}
-            <tr>
-              <th scope="row">Matt Johnson</th>
-              <td>matt.johnson@gmail.com</td>
-              <td>(123)456-7890</td>
-              <td>25</td>
+           
+
+            {this.state.results.map(result =>(
+              <tr>
+              <th scope="row">{result.name.first + " " + result.name.last}</th>
+              <td>{result.email}</td>
+              <td>{result.phone}</td>
+              <td>{result.dob.age}</td>
             </tr>
-            <tr>
-              <th scope="row">Kyle Green</th>
-              <td>kyle.green@gmail.com</td>
-              <td>(234)567-8901</td>
-              <td>32</td>
-            </tr>
-            <tr>
-              <th scope="row">Lebron James</th>
-              <td>theking23@nba.com</td>
-              <td>(345)678-9012</td>
-              <td>35</td>
-            </tr>
+            ))}
+            
           </tbody>
         </table>
       </Container>
